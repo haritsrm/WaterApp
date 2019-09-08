@@ -1,4 +1,6 @@
-hai nurfi
+@extends('layouts.app')
+
+@section('content')
 <table border=1>
     <thead>
         <tr>
@@ -24,3 +26,4 @@ hai nurfi
         @endforeach
     </tbody>
 </table>
+@endsection
