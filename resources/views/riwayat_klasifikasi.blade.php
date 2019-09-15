@@ -17,6 +17,9 @@
                 </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td>{{ $kelas }}</td>
+                    </tr>
                 {{! $counter = 1 }}
                 @foreach($monitor as $key => $value)
                     <tr>
