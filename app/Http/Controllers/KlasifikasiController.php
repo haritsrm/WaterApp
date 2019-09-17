@@ -22,8 +22,15 @@ class KlasifikasiController extends Controller
 
     public function riwayatKlasifikasi ()
     {
-        $monitor = Monitor::all();
-        return view('riwayat_klasifikasi')->with('monitor', $monitor);
+        $result = Result::orderBy('created_at', 'desc')->get();
+        return view('riwayat_klasifikasi')->with('result', $result);
+    }
+
+    public function simpanSungai (Request $request)
+    {
+        $this->klasifikasi($request);
+
+        return redirect()->back();
     }
 
     /**
@@ -33,9 +40,9 @@ class KlasifikasiController extends Controller
      * 
      * @param object $data
      */
-    private function klasifikasi ($data)
+    private function klasifikasi (Request $request)
     {
-        $hasil = $this->simpanHasilObjek($data);
+        $hasil = $this->simpanHasilObjek($request);
         $kelas_1 = $this->proses($hasil, 1);
         $kelas_2 = $this->proses($hasil, 2);
         if ($kelas_1 > $kelas_2) {
@@ -128,9 +135,10 @@ class KlasifikasiController extends Controller
      * 
      * @return object
      */
-    private function simpanHasilObjek ($data)
+    private function simpanHasilObjek (Request $request)
     {
         $hasil = Result::create([
+            'name' => $request->name,
             'pH' => $this->menghitungNilaiRataRataObjek('pH'),
             'turbidity' => $this->menghitungNilaiRataRataObjek('turbidity'),
             'temperature' => $this->menghitungNilaiRataRataObjek('temperature')

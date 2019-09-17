@@ -17,20 +17,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>{{ $kelas }}</td>
-                    </tr>
                 {{! $counter = 1 }}
-                @foreach($monitor as $key => $value)
+                @foreach($result as $key => $value)
                     <tr>
                         <td>{{ $counter++ }}</td>
-                        <td>Sungai {{ $counter  }}</td>
+                        <td>{{ $value->name }}</td>
                         <td>{{ $value->pH }}</td>
                         <td>{{ $value->turbidity }}</td>
                         <td>{{ $value->temperature }}</td>
                         <td>{{ $value->created_at->format('d-m-Y') }}</td>
                         <td>{{ $value->created_at->format('H:i') }}</td>
-                        <td><span class="label label-success">IV</span></td>
+                        <td><span class="label label-success">{{ $value->classes }}</span></td>
                     </tr>
                 @endforeach
                 </tbody>

@@ -26,3 +26,4 @@ Route::get('/data-training', function () {
 Route::get('/klasifikasi', 'KlasifikasiController@tabelKlasifikasi')->name('tabelKlasifikasi');
 Route::get('/grafik', 'KlasifikasiController@grafik')->name('grafik');
 Route::get('/riwayat', 'KlasifikasiController@riwayatKlasifikasi')->name('riwayatKlasifikasi');
+Route::post('/simpan', 'KlasifikasiController@simpanSungai')->name('simpanSungai');
