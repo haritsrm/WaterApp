@@ -14,6 +14,7 @@
                     <th>Tanggal</th>
                     <th>Waktu</th>
                     <th>Kelas</th>
+                    <th>Hapus?</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -28,6 +29,16 @@
                         <td>{{ $value->created_at->format('d-m-Y') }}</td>
                         <td>{{ $value->created_at->format('H:i') }}</td>
                         <td><span class="label label-success">{{ $value->classes }}</span></td>
+                        <td>
+                            <form method="POST" action="{{ route('hapusRiwayat', $value->id) }}">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+
+                                <div class="form-group">
+                                    <button class="btn btn-danger" type="submit">Hapus</button>
+                                </div>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

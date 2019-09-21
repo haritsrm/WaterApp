@@ -27,3 +27,6 @@ Route::get('/klasifikasi', 'KlasifikasiController@tabelKlasifikasi')->name('tabe
 Route::get('/grafik', 'KlasifikasiController@grafik')->name('grafik');
 Route::get('/riwayat', 'KlasifikasiController@riwayatKlasifikasi')->name('riwayatKlasifikasi');
 Route::post('/simpan', 'KlasifikasiController@simpanSungai')->name('simpanSungai');
+Route::delete('/hapusRiwayat/{id}', 'KlasifikasiController@hapusRiwayatKlasifikasi')->name('hapusRiwayat');
+Route::post('/importTraining', 'KlasifikasiController@importTraining')->name('importTraining');
+Route::delete('/hapusTraining/{id}', 'KlasifikasiController@hapusDataTraining')->name('hapusTraining');

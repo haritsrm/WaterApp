@@ -5,10 +5,51 @@ namespace App\Http\Controllers;
 use App\Monitor;
 use App\Training;
 use App\Result;
+
+use App\Exports\SiswaExport;
+use App\Imports\SiswaImport;
+use Maatwebsite\Excel\Facades\Excel;
+
 use Illuminate\Http\Request;
 
 class KlasifikasiController extends Controller
 {
+    public function importTraining(Request $request) 
+	{
+		// validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('imported',$nama_file);
+ 
+		// import data
+		Excel::import(new TrainingImport, public_path('/imported/'.$nama_file));
+ 
+		// notifikasi dengan session
+		Session::flash('sukses','Data Training Berhasil Diimport!');
+ 
+		// alihkan halaman kembali
+		return redirect()->back();
+    }
+    
+    public function hapusDataTraining ($id)
+    {
+        $training = Training::find($id);
+        if ($training) {
+            $training->delete();
+        }
+
+        return redirect()->back();
+    }
+
     public function tabelKlasifikasi ()
     {
         $monitor = Monitor::orderBy('created_at', 'desc')->get();
@@ -24,6 +65,21 @@ class KlasifikasiController extends Controller
     {
         $result = Result::orderBy('created_at', 'desc')->get();
         return view('riwayat_klasifikasi')->with('result', $result);
+    }
+
+	public function exportRiwayatKlasifikasi ()
+	{
+		return Excel::download(new RiwayatKlasifikasi, 'result.xlsx');
+    }
+    
+    public function hapusRiwayatKlasifikasi ($id)
+    {
+        $result = Result::find($id);
+        if ($result) {
+            $result->delete();
+        }
+
+        return redirect()->back();
     }
 
     public function simpanSungai (Request $request)
