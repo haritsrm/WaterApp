@@ -15,11 +15,11 @@ class CreateTrainingsTable extends Migration
     {
         Schema::create('trainings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->float('pH');
-            $table->float('temperature');
-            $table->float('turbidity');
-            $table->integer('classes');
+            $table->string('name')->nullable();
+            $table->float('pH')->nullable();
+            $table->float('temperature')->nullable();
+            $table->float('turbidity')->nullable();
+            $table->integer('classes')->nullable();
             $table->timestamps();
         });
     }
