@@ -126,7 +126,7 @@ class KlasifikasiController extends Controller
                         ->where('classes', $kelas)->count();
         $jumlah_kelas = $this->menghitungKelas($kelas);
 
-        return round(($jumlah_kasus/$jumlah_kelas), 1);
+        return $jumlah_kasus/$jumlah_kelas;
     }
 
     /**

@@ -57,6 +57,7 @@
                     <th>pH</th>
                     <th>Kekeruhan</th>
                     <th>Suhu</th>
+                    <th>Kelas</th>
                     <th>Hapus?</th>
                 </tr>
             </thead>
@@ -69,6 +70,7 @@
                     <td>{{ $value->pH }}</td>
                     <td>{{ $value->turbidity }}</td>
                     <td>{{ $value->temperature }}</td>
+                    <td>{{ $value->classes }}</td>
                     <td>
                         <form method="POST" action="{{ route('hapusTraining', $value->id) }}">
                             {{ csrf_field() }}
