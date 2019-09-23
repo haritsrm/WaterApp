@@ -15,11 +15,11 @@ class TrainingImport implements ToModel
     public function model(array $row)
     {
         return new Training([
-            'name' => $row[0], 
-            'pH' => $row[1], 
-            'temperature' => $row[2], 
-            'turbidity' => $row[3], 
-            'classes' => $row[4]
+            'name' => $row[0],
+            'pH' => round($row[1], 1), 
+            'temperature' => round($row[2], 1), 
+            'turbidity' => round($row[3], 1), 
+            'classes' => round($row[4], 1)
         ]);
     }
 }
