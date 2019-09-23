@@ -6,8 +6,7 @@ use App\Monitor;
 use App\Training;
 use App\Result;
 
-use App\Exports\SiswaExport;
-use App\Imports\SiswaImport;
+use App\Imports\TrainingImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 use Illuminate\Http\Request;
@@ -16,22 +15,9 @@ class KlasifikasiController extends Controller
 {
     public function importTraining(Request $request) 
 	{
-		// menangkap file excel
 		$file = $request->file('file');
- 
-		// membuat nama file unik
-		$nama_file = rand().$file->getClientOriginalName();
- 
-		// upload ke folder file_siswa di dalam folder public
-		$file->move('imported',$nama_file);
- 
-		// import data
-		Excel::import(new TrainingImport, public_path('/imported/'.$nama_file));
- 
-		// notifikasi dengan session
-		Session::flash('sukses','Data Training Berhasil Diimport!');
- 
-		// alihkan halaman kembali
+        Excel::import(new TrainingImport, $file);
+        
 		return redirect()->back();
     }
     
