@@ -51,11 +51,6 @@ class KlasifikasiController extends Controller
         return view('tabel_klasifikasi')->with('monitor', $monitor);
     }
 
-    public function grafik ()
-    {
-        return view('grafik');
-    }
-
     public function riwayatKlasifikasi ()
     {
         $result = Result::orderBy('created_at', 'desc')->get();

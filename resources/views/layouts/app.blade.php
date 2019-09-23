@@ -101,7 +101,6 @@
 								<li class="navigation-header"><span>Menu</span> <i class="icon-menu" title="Main pages"></i></li>
                                 <li {{{ (Request::is('/') ? 'class=active' : '') }}}><a href="/"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
 								<li {{{ (Request::is('klasifikasi') ? 'class=active' : '') }}}><a href="/klasifikasi"><i class="icon-users"></i><span>Data Monitoring</span></a></li>
-                                <li {{{ (Request::is('grafik') ? 'class=active' : '') }}}><a href="/grafik"><i class=" icon-graph"></i> <span>Grafik</span></a></li>
                                 <li {{{ (Request::is('riwayat') ? 'class=active' : '') }}}><a href="/riwayat"><i class=" icon-history"></i> <span>Riwayat Klasifikasi</span></a></li>
 								<!-- /main -->
 
@@ -125,7 +124,6 @@
 							<h4>
 								<span class="text-semibold">{{{ (Request::is('/') ? 'Dashboard' : '') }}}</span>
 								<span class="text-semibold">{{{ (Request::is('klasifikasi') ? 'Data Monitoring' : '') }}}</span>
-                                <span class="text-semibold">{{{ (Request::is('grafik') ? 'Grafik' : '') }}}</span>
                                 <span class="text-semibold">{{{ (Request::is('riwayat') ? 'Riwayat Klasifikasi' : '') }}}</span>
                                 <span class="text-semibold">{{{ (Request::is('data-training') ? 'Data Training' : '') }}}</span>
                             </h4>
