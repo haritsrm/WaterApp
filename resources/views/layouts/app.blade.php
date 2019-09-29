@@ -17,11 +17,6 @@
 	<script type="text/javascript" src="/assets/js/plugins/loaders/blockui.min.js"></script>
 	<!-- /core JS files -->
 
-	<!-- Theme JS files -->
-	<script type="text/javascript" src="/assets/js/plugins/notifications/bootbox.min.js"></script>
-	<script type="text/javascript" src="/assets/js/plugins/notifications/sweet_alert.min.js"></script>
-	<script type="text/javascript" src="/assets/js/pages/components_modals.js"></script>
-
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 	<link href="/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
@@ -31,13 +26,6 @@
 	<link href="/assets/css/colors.css" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
 
-	<!-- Theme JS files -->
-	<script type="text/javascript" src="/assets/js/plugins/ui/nicescroll.min.js"></script>
-
-	<script type="text/javascript" src="/assets/js/core/app.js"></script>
-	<script type="text/javascript" src="/assets/js/pages/layout_fixed_custom.js"></script>
-    <!-- /theme JS files -->
-
     <!-- Theme JS files -->
 	<script type="text/javascript" src="/assets/js/plugins/tables/datatables/datatables.min.js"></script>
 	<script type="text/javascript" src="/assets/js/plugins/forms/selects/select2.min.js"></script>
@@ -45,12 +33,19 @@
 	<script type="text/javascript" src="/assets/js/pages/datatables_basic.js"></script>
     <!-- /theme JS files -->
 
-    <!-- Theme JS files -->
-    <script type="text/javascript" src="/assets/js/plugins/visualization/echarts/echarts.js"></script>
+	<!-- Theme JS files -->
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAPQXi7ZBZ73SPXi7JfHycSCi30thvQGCg&amp;sensor=false&amp;libraries=places"></script>
 
-    <script type="text/javascript" src="/assets/js/core/app.js"></script>
-    <script type="text/javascript" src="/assets/js/charts/echarts/lines_areas.js"></script>
-    <!-- /theme JS files -->
+	<script type="text/javascript" src="assets/js/core/libraries/jquery_ui/widgets.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/forms/inputs/typeahead/typeahead.bundle.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/pickers/location/typeahead_addresspicker.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/pickers/location/autocomplete_addresspicker.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/pickers/location/location.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/ui/prism.min.js"></script>
+
+	<script type="text/javascript" src="assets/js/core/app.js"></script>
+	<script type="text/javascript" src="assets/js/pages/picker_location.js"></script>
+	<!-- /theme JS files -->
 
     <!-- Theme JS files -->
 	<script type="text/javascript" src="/assets/js/core/libraries/jquery_ui/interactions.min.js"></script>
@@ -58,6 +53,13 @@
 
 	<script type="text/javascript" src="/assets/js/pages/form_select2.js"></script>
 	<!-- /theme JS files -->
+
+	<!-- Theme JS files -->
+	<script type="text/javascript" src="/assets/js/plugins/ui/nicescroll.min.js"></script>
+
+	<script type="text/javascript" src="/assets/js/core/app.js"></script>
+	<script type="text/javascript" src="/assets/js/pages/layout_fixed_custom.js"></script>
+    <!-- /theme JS files -->
 </head>
 
 <body class="navbar-top">
@@ -99,9 +101,9 @@
 
 								<!-- Main -->
 								<li class="navigation-header"><span>Menu</span> <i class="icon-menu" title="Main pages"></i></li>
-                                <li {{{ (Request::is('/') ? 'class=active' : '') }}}><a href="/"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
-								<li {{{ (Request::is('klasifikasi') ? 'class=active' : '') }}}><a href="/klasifikasi"><i class="icon-users"></i><span>Data Monitoring</span></a></li>
+								<li {{{ (Request::is('/') ? 'class=active' : '') }}}><a href="/"><i class="icon-users"></i><span>Data Monitoring</span></a></li>
                                 <li {{{ (Request::is('riwayat') ? 'class=active' : '') }}}><a href="/riwayat"><i class=" icon-history"></i> <span>Riwayat Klasifikasi</span></a></li>
+								<li {{{ (Request::is('informasi') ? 'class=active' : '') }}}><a href="/informasi"><i class="icon-home4"></i> <span>Informasi</span></a></li>
 								<!-- /main -->
 
 							</ul>
@@ -122,8 +124,8 @@
 					<div class="page-header-content">
 						<div class="page-title">
 							<h4>
-								<span class="text-semibold">{{{ (Request::is('/') ? 'Dashboard' : '') }}}</span>
-								<span class="text-semibold">{{{ (Request::is('klasifikasi') ? 'Data Monitoring' : '') }}}</span>
+								<span class="text-semibold">{{{ (Request::is('/') ? 'Data Monitoring' : '') }}}</span>
+								<span class="text-semibold">{{{ (Request::is('informasi') ? 'Informasi' : '') }}}</span>
                                 <span class="text-semibold">{{{ (Request::is('riwayat') ? 'Riwayat Klasifikasi' : '') }}}</span>
                                 <span class="text-semibold">{{{ (Request::is('data-training') ? 'Data Training' : '') }}}</span>
                             </h4>

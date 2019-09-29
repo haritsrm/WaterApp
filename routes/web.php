@@ -13,7 +13,7 @@
 
 use App\Training;
 
-Route::get('/', function () {
+Route::get('/informasi', function () {
     return view('index');
 });
 
@@ -23,7 +23,7 @@ Route::get('/data-training', function () {
     return view('data-training')->with('trainings', $trainings);
 });
 
-Route::get('/klasifikasi', 'KlasifikasiController@tabelKlasifikasi')->name('tabelKlasifikasi');
+Route::get('/', 'KlasifikasiController@tabelKlasifikasi')->name('tabelKlasifikasi');
 Route::get('/grafik', 'KlasifikasiController@grafik')->name('grafik');
 Route::get('/riwayat', 'KlasifikasiController@riwayatKlasifikasi')->name('riwayatKlasifikasi');
 Route::post('/simpan', 'KlasifikasiController@simpanSungai')->name('simpanSungai');

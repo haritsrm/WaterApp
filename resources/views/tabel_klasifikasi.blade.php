@@ -1,11 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="panel panel-flat">
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h5 class="panel-title">Hasil perhitungan rata-rata saat ini</h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+    </div>
     <div class="panel-body">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <ul class="list-inline text-center">
                         <li>
                             <a href="#" class="btn border-teal text-teal btn-flat btn-rounded btn-icon btn-xs valign-text-bottom"><i class="icon-plus3"></i></a>
@@ -21,7 +31,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <ul class="list-inline text-center">
                         <li>
                             <a href="#" class="btn border-warning-400 text-warning-400 btn-flat btn-rounded btn-icon btn-xs valign-text-bottom"><i class="icon-watch2"></i></a>
@@ -37,7 +47,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <ul class="list-inline text-center">
                         <li>
                             <a href="#" class="btn border-indigo-400 text-indigo-400 btn-flat btn-rounded btn-icon btn-xs valign-text-bottom"><i class="icon-people"></i></a>
@@ -52,9 +62,39 @@
                         <div class="content-group" id="total-online"></div>
                     </div>
                 </div>
+
+                <div class="col-lg-3">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="#" class="btn border-indigo-400 text-indigo-400 btn-flat btn-rounded btn-icon btn-xs valign-text-bottom"><i class="icon-people"></i></a>
+                        </li>
+                        <li class="text-left">
+                            <div class="text-semibold">Kelas</div>
+                            <div class="text-muted"><span class="label label-success">{{ $kelas ? $kelas : 'tidak ada kelas' }}</span></div>
+                        </li>
+                    </ul>
+
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <div class="content-group" id="total-online"></div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+</div>
 
+<div class="panel panel-success panel-collapsed">
+    <div class="panel-heading">
+        <h5 class="panel-title">Detail data monitor</h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel-body">
         <table class="table datatable-basic">
             <thead>
                 <tr>
@@ -100,7 +140,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="map-wrapper locationpicker-default"></div>
                         <div class="modal-footer text-center">
                             <button type="submit" class="btn btn-primary">Simpan <i class="icon-plus22"></i></button>
                         </div>
