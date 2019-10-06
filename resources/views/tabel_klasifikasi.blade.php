@@ -22,7 +22,7 @@
                         </li>
                         <li class="text-left">
                             <div class="text-semibold">pH</div>
-                            <div class="text-muted">{{ $monitor->avg('pH') ? $monitor->avg('pH') : 0  }} avg</div>
+                            <div class="text-muted">{{ $monitor->avg('pH') ? round($monitor->avg('pH'), 1) : 0  }} avg</div>
                         </li>
                     </ul>
 
@@ -38,7 +38,7 @@
                         </li>
                         <li class="text-left">
                             <div class="text-semibold">Turbidity</div>
-                            <div class="text-muted">{{ $monitor->avg('turbidity') ? $monitor->avg('turbidity') : 0  }} avg</div>
+                            <div class="text-muted">{{ $monitor->avg('turbidity') ? round($monitor->avg('turbidity'),1) : 0  }} avg</div>
                         </li>
                     </ul>
 
@@ -54,7 +54,7 @@
                         </li>
                         <li class="text-left">
                             <div class="text-semibold">Temperature</div>
-                            <div class="text-muted">{{ $monitor->avg('temperature') ? $monitor->avg('temperature') : 0  }} avg</div>
+                            <div class="text-muted">{{ $monitor->avg('temperature') ? round($monitor->avg('temperature'),1) : 0  }} avg</div>
                         </li>
                     </ul>
 
