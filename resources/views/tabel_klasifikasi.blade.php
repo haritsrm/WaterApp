@@ -3,7 +3,7 @@
 @section('content')
 <div class="panel panel-success">
     <div class="panel-heading">
-        <h5 class="panel-title">Hasil perhitungan rata-rata saat ini</h5>
+        <h5 class="panel-title">Hasil perhitungan rata-rata:</h5>
         <div class="heading-elements">
             <ul class="icons-list">
                 <li><a data-action="collapse"></a></li>
@@ -22,7 +22,7 @@
                         </li>
                         <li class="text-left">
                             <div class="text-semibold">pH</div>
-                            <div class="text-muted">{{ $monitor->avg('pH') ? round($monitor->avg('pH'), 1) : 0  }} avg</div>
+                            <div class="text-muted">{{ $monitor->avg('pH') ? round($monitor->avg('pH'), 1) : 0  }}</div>
                         </li>
                     </ul>
 
@@ -37,8 +37,8 @@
                             <a href="#" class="btn border-warning-400 text-warning-400 btn-flat btn-rounded btn-icon btn-xs valign-text-bottom"><i class="icon-watch2"></i></a>
                         </li>
                         <li class="text-left">
-                            <div class="text-semibold">Turbidity</div>
-                            <div class="text-muted">{{ $monitor->avg('turbidity') ? round($monitor->avg('turbidity'),1) : 0  }} avg</div>
+                            <div class="text-semibold">Kekeruhan</div>
+                            <div class="text-muted">{{ $monitor->avg('turbidity') ? round($monitor->avg('turbidity'),1) : 0  }} NTU</div>
                         </li>
                     </ul>
 
@@ -53,8 +53,8 @@
                             <a href="#" class="btn border-indigo-400 text-indigo-400 btn-flat btn-rounded btn-icon btn-xs valign-text-bottom"><i class="icon-people"></i></a>
                         </li>
                         <li class="text-left">
-                            <div class="text-semibold">Temperature</div>
-                            <div class="text-muted">{{ $monitor->avg('temperature') ? round($monitor->avg('temperature'),1) : 0  }} avg</div>
+                            <div class="text-semibold">Suhu</div>
+                            <div class="text-muted">{{ $monitor->avg('temperature') ? round($monitor->avg('temperature'),1) : 0  }} &deg;C</div>
                         </li>
                     </ul>
 
@@ -79,6 +79,41 @@
                     </div>
                 </div>
             </div>
+            <div>
+                @if($kelas)
+                <p align="center"><strong>Keterangan:</strong> {{{ $kelas == 1 ? "Air kelas 1 merupakan air yang dapat dimanfaatkan untuk kebutuhan rumah tangga." : ""}}}
+                {{{ $kelas == 2 ? "Air kelas 2 merupakan air yang dapat dimanfaatkan untuk pertanian, peternakan, dan kebutuhan industri." : ""}}}</p>
+                @endif
+            </div>
+            <button class="btn btn-primary" style="margin: 0% 46%" data-toggle="modal" data-target="#modal_form_inline">Simpan data</button>
+            <!-- Inline form modal -->
+            <div id="modal_form_inline" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content text-center">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Masukkan nama objek</h5>
+                        </div>
+
+                        <form action="{{ route('simpanSungai') }}" method="post" class="form-inline">
+                            @csrf
+                            <div class="modal-body">
+                                <div class="form-group has-feedback">
+                                    <label>Nama Objek: </label>
+                                    <input type="text" placeholder="nama objek" name="name" class="form-control">
+                                    <div class="form-control-feedback">
+                                        <i class="text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="map-wrapper locationpicker-default"></div>
+                            <div class="modal-footer text-center">
+                                <button type="submit" class="btn btn-primary">Simpan <i class="icon-plus22"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /inline form modal -->
         </div>
     </div>
 </div>
@@ -120,35 +155,6 @@
                 @endforeach
             </tbody>
         </table>
-        <button class="btn btn-primary" style="margin: 0% 42%" data-toggle="modal" data-target="#modal_form_inline">Simpan data dan analisis</button>
-        <!-- Inline form modal -->
-        <div id="modal_form_inline" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content text-center">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Masukkan nama sungai</h5>
-                    </div>
-
-                    <form action="{{ route('simpanSungai') }}" method="post" class="form-inline">
-                        @csrf
-                        <div class="modal-body">
-                            <div class="form-group has-feedback">
-                                <label>Nama Sungai: </label>
-                                <input type="text" placeholder="nama sungai" name="name" class="form-control">
-                                <div class="form-control-feedback">
-                                    <i class="text-muted"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="map-wrapper locationpicker-default"></div>
-                        <div class="modal-footer text-center">
-                            <button type="submit" class="btn btn-primary">Simpan <i class="icon-plus22"></i></button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- /inline form modal -->
     </div>
 </div>
 @endsection

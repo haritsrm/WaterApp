@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="panel panel-flat">
+    <div class="panel panel-success">
         <div class="panel-heading">
-            <h5 class="panel-title">Sistem Klasifikasi Air</h5>
+            <h5 class="panel-title">Pembagian Kelas Air</h5>
             <div class="heading-elements">
                 <ul class="icons-list">
                     <li><a data-action="collapse"></a></li>

@@ -34,7 +34,7 @@
     <!-- /theme JS files -->
 
 	<!-- Theme JS files -->
-	<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAPQXi7ZBZ73SPXi7JfHycSCi30thvQGCg&amp;sensor=false&amp;libraries=places"></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDY0QfpO5ioPPjgAhPcH0E_dLknNILSIhw&callback=initMap" type="text/javascript"></script>
 
 	<script type="text/javascript" src="assets/js/core/libraries/jquery_ui/widgets.min.js"></script>
 	<script type="text/javascript" src="assets/js/plugins/forms/inputs/typeahead/typeahead.bundle.min.js"></script>
@@ -125,8 +125,6 @@
 						<div class="page-title">
 							<h4>
 								<span class="text-semibold">{{{ (Request::is('/') ? 'Data Monitoring' : '') }}}</span>
-								<span class="text-semibold">{{{ (Request::is('informasi') ? 'Informasi' : '') }}}</span>
-                                <span class="text-semibold">{{{ (Request::is('riwayat') ? 'Riwayat Klasifikasi' : '') }}}</span>
                                 <span class="text-semibold">{{{ (Request::is('data-training') ? 'Data Training' : '') }}}</span>
                             </h4>
 						</div>
