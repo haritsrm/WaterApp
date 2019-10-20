@@ -13,16 +13,17 @@
             </div>
         </div>
         <div class="panel-body">
+            <center><p>Klik pada nama objek untuk melihat detail analisis dari objek penelitian tersebut.</p></center>
             <table class="table datatable-basic">
                 <thead>
                 <tr>
-                    <th width="1">No</th>
+                    <th>No</th>
                     <th>Tanggal</th>
                     <th>Waktu</th>
                     <th>Nama objek</th>
-                    <th width="1">pH</th>
-                    <th width="1">Kekeruhan</th>
-                    <th width="1">Suhu</th>
+                    <th>pH</th>
+                    <th>Kekeruhan</th>
+                    <th>Suhu</th>
                     <th>Kelas</th>
                     <th>Hapus?</th>
                 </tr>
@@ -34,33 +35,35 @@
                         <td>{{ $counter++ }}</td>
                         <td>{{ $value->created_at->format('d-m-Y') }}</td>
                         <td>{{ $value->created_at->format('H:i') }}</td>
-                        <td>{{ $value->name }}</td>
+                        <td><a onclick="initMap{{ $value->id }}()" data-toggle="modal" data-target="#modal_form_inline_{{ $value->id }}">{{ $value->name }}</a></td>
                         <td>{{ $value->pH }}</td>
                         <td>{{ $value->turbidity }}</td>
                         <td>{{ $value->temperature }}</td>
                         <td><span class="label label-success">{{ $value->classes }}</span></td>
                         <td>
-                            <button class="btn btn-primary" onclick="initMap()" data-toggle="modal" data-target="#modal_form_inline_{{ $value->id }}">Details</button>
                             <!-- Inline form modal -->
                             <div id="modal_form_inline_{{ $value->id }}" class="modal fade">
                                 <div class="modal-dialog">
                                     <div class="modal-content text-center">
-                                        <div class="modal-header">
+                                        <div class="modal-header bg-success">
                                             <h5 class="modal-title">{{ $value->name }}</h5>
                                         </div>
                                         <div class="modal-body">
-                                            <div id="detail-map"></div>
+                                            <div id="detail-map-{{ $value->id }}"></div>
                                             <script>
-                                                function initMap() {
+                                                function initMap{{ $value->id }}() {
                                                     var pin = "{{ number_format($value->latitude, 3) }},{{ number_format($value->longitude, 3) }}";
-                                                    var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+pin+"&zoom=14&size=400x300&sensor=false&key={{ env('MAPS_API_KEY') }}";
-                                                    document.getElementById("detail-map").innerHTML = "<img src='"+img_url+"'>";
+                                                    var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+pin+"&zoom=15&size=550x300&sensor=false&key={{ env('MAPS_API_KEY') }}";
+                                                    document.getElementById("detail-map-{{ $value->id }}").innerHTML = "<img src='"+img_url+"'>";
                                                 }
                                             </script>
-                                            <p><strong>Maps link: </strong><a href="https://www.google.com/maps/search/?api=1&query={{ $value->latitude }},{{ $value->longitude }}">https://www.google.com/maps/search/?api=1&query={{ $value->latitude }},{{ $value->longitude }}</a></p>
-                                            <div class="panel">
+                                            <p><strong>Maps link: </strong><a href="https://www.google.com/maps/search/?api=1&query={{ $value->latitude }},{{ $value->longitude }}">https://www.google.com/maps/search/?query={{ $value->latitude }},{{ $value->longitude }}</a></p>
+                                            <hr>
+                                            <div class="panel panel-success">           
+                                                <div class="panel-heading">
+                                                    <h5 class="panel-title">Hasil perhitungan analisis:</h5>
+                                                </div>
                                                 <div class="panel-body">
-                                                    <p>Berikut ini adalah hasil perhitungan berdasarkan proses analisis.</p>
                                                     <table class="table datatable-basic">
                                                         <thead>
                                                             <tr>
@@ -82,7 +85,10 @@
                                                     </table>
                                                 </div>
                                             </div>
-                                            <div class="panel">
+                                            <div class="panel panel-success">           
+                                                <div class="panel-heading">
+                                                    <h5 class="panel-title">Detail riwayat:</h5>
+                                                </div>
                                                 <div class="panel-body">
                                                     <table class="table datatable-basic">
                                                         <thead>
@@ -118,9 +124,7 @@
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
 
-                                <div class="form-group">
-                                    <button class="btn btn-danger" type="submit">Hapus</button>
-                                </div>
+                                <button class="btn btn-danger" type="submit">Hapus</button>
                             </form>
                         </td>
                     </tr>

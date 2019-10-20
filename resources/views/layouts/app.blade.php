@@ -42,13 +42,6 @@
 	<script type="text/javascript" src="/assets/js/pages/datatables_basic.js"></script>
 	<script type="text/javascript" src="/assets/js/pages/picker_location.js"></script>
 	<!-- /theme JS files -->
-	<style>
-      /* Set the size of the div element that contains the map */
-      #detail-map {
-        height: 400px;  /* The height is 400 pixels */
-        width: 100%;  /* The width is the width of the web page */
-       }
-    </style>
 </head>
 
 <body class="navbar-top">
