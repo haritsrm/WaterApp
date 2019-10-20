@@ -27,7 +27,7 @@
 
    
 	<!-- Theme JS files -->
-	<script async defer src="http://maps.google.com/maps/api/js?key=AIzaSyAs87r85zK2FmKX7dBMU4LLElpsdOxwRBU&callback=initMap" type="text/javascript"></script>
+	<script async defer src="http://maps.google.com/maps/api/js?key={{ env('MAPS_API_KEY') }}&callback=initMap" type="text/javascript"></script>
 	<script type="text/javascript" src="/assets/js/core/libraries/jquery_ui/widgets.min.js"></script>
 	<script type="text/javascript" src="/assets/js/plugins/forms/inputs/typeahead/typeahead.bundle.min.js"></script>
 	<script type="text/javascript" src="/assets/js/plugins/pickers/location/typeahead_addresspicker.js"></script>
