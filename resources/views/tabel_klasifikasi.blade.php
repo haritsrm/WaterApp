@@ -101,15 +101,15 @@
                             <div class="modal-body">
                                 <div class="form-group has-feedback">
                                     <label>Nama Objek: </label>
-                                    <input type="text" placeholder="nama objek" name="name" id="us3-address" class="form-control">
+                                    <input type="text" placeholder="nama objek" name="name" id="us2-address" class="form-control">
                                     <div class="form-control-feedback">
                                         <i class="text-muted"></i>
                                     </div>
                                 </div>
-                                <div class="map-wrapper" id="us3"></div>
-                                <input type="hidden" name="latitude" class="form-control" id="us3-lat">
-                                <input type="hidden" name="longitude" class="form-control" id="us3-lon">
-                                <input type="hidden" class="form-control" id="us3-radius" value="">
+                                <div class="map-wrapper" id="us2"></div>
+                                <input type="hidden" name="latitude" class="form-control" id="us2-lat">
+                                <input type="hidden" name="longitude" class="form-control" id="us2-lon">
+                                <input type="hidden" class="form-control" id="us2-radius" value="">
                             </div>
                             <div class="modal-footer text-center">
                                 <button type="submit" class="btn btn-primary">Simpan <i class="icon-plus22"></i></button>

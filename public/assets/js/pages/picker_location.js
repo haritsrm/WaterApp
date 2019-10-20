@@ -39,8 +39,8 @@ $(function() {
 
     // Binding UI with the widget
     $('#us2').locationpicker({
-        location: {latitude: 44.1219256, longitude: 15.2357175}, 
-        radius: 300,
+        location: {latitude: -6.914744, longitude: 107.609810}, 
+        radius: 1,
         scrollwheel: false,
         inputBinding: {
             latitudeInput: $('#us2-lat'),
