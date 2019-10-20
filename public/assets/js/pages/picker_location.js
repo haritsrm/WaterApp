@@ -53,8 +53,9 @@ $(function() {
 
     // Subscribing for events
     $('#us3').locationpicker({
-        location: {latitude: 47.494293, longitude: 19.054151899999965}, 
-        radius: 300,
+        location: {latitude: -6.914744, longitude: 107.609810}, 
+        radius: 1,
+        zoom: 13,
         scrollwheel: false,
         inputBinding: {
             latitudeInput: $('#us3-lat'),

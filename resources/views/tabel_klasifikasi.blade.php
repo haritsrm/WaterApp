@@ -80,12 +80,14 @@
                 </div>
             </div>
             <div>
-                @if($kelas)
-                <p align="center"><strong>Keterangan:</strong> {{{ $kelas == 1 ? "Air kelas 1 merupakan air yang dapat dimanfaatkan untuk kebutuhan rumah tangga." : ""}}}
-                {{{ $kelas == 2 ? "Air kelas 2 merupakan air yang dapat dimanfaatkan untuk pertanian, peternakan, dan kebutuhan industri." : ""}}}</p>
-                @endif
+                <p align="center"><strong>Keterangan:</strong>
+                    {{{ $kelas ? "" : "Data monitor masih kosong" }}}
+                    {{{ $kelas == 1 ? "Air kelas 1 merupakan air yang dapat dimanfaatkan untuk kebutuhan rumah tangga." : ""}}}
+                    {{{ $kelas == 2 ? "Air kelas 2 merupakan air yang dapat dimanfaatkan untuk pertanian, peternakan, dan kebutuhan industri." : ""}}}</p>
             </div>
+            @if($kelas)
             <button class="btn btn-primary" style="margin: 0% 46%" data-toggle="modal" data-target="#modal_form_inline">Simpan data</button>
+            @endif
             <!-- Inline form modal -->
             <div id="modal_form_inline" class="modal fade">
                 <div class="modal-dialog">
@@ -99,13 +101,16 @@
                             <div class="modal-body">
                                 <div class="form-group has-feedback">
                                     <label>Nama Objek: </label>
-                                    <input type="text" placeholder="nama objek" name="name" class="form-control">
+                                    <input type="text" placeholder="nama objek" name="name" id="us3-address" class="form-control">
                                     <div class="form-control-feedback">
                                         <i class="text-muted"></i>
                                     </div>
                                 </div>
+                                <div class="map-wrapper" id="us3"></div>
+                                <input type="hidden" name="latitude" class="form-control" id="us3-lat">
+                                <input type="hidden" name="longitude" class="form-control" id="us3-lon">
+                                <input type="hidden" class="form-control" id="us3-radius" value="">
                             </div>
-                            <div class="map-wrapper locationpicker-default"></div>
                             <div class="modal-footer text-center">
                                 <button type="submit" class="btn btn-primary">Simpan <i class="icon-plus22"></i></button>
                             </div>
@@ -118,7 +123,7 @@
     </div>
 </div>
 
-<div class="panel panel-success panel-collapsed">
+<div class="panel panel-success">
     <div class="panel-heading">
         <h5 class="panel-title">Detail data monitor</h5>
         <div class="heading-elements">

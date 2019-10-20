@@ -16,10 +16,14 @@ class CreateResultsTable extends Migration
         Schema::create('results', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->float('pH');
             $table->float('temperature');
             $table->float('turbidity');
             $table->integer('classes')->nullable();
+            $table->json('histories')->nullable();
+            $table->json('analysis')->nullable();
             $table->timestamps();
         });
     }

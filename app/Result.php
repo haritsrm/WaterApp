@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Result extends Model
 {
     protected $fillable = [
-        'name', 'pH', 'temperature', 'turbidity', 'classes'
+        'name', 'pH', 'temperature', 'turbidity', 'classes', 'latitude', 'longitude', 'histories', 'analysis'
     ];
 }

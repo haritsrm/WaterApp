@@ -7,20 +7,21 @@ use App\Training;
 use App\Result;
 
 use App\Imports\TrainingImport;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 use Illuminate\Http\Request;
 
 class KlasifikasiController extends Controller
 {
-    public function importTraining(Request $request) 
+    public function importTraining(Request $request)
 	{
 		$file = $request->file('file');
         Excel::import(new TrainingImport, $file);
-        
+
 		return redirect()->back();
     }
-    
+
     public function hapusDataTraining ($id)
     {
         $training = Training::find($id);
@@ -34,8 +35,10 @@ class KlasifikasiController extends Controller
     public function tabelKlasifikasi (Request $request)
     {
         $data = $this->klasifikasi($request);
-        $kelas = $data['classes'];
         $monitor = Monitor::orderBy('created_at', 'desc')->get();
+        $kelas = null;
+        if ($monitor->count() !== 0)
+            $kelas = $data['classes'];
         return view('tabel_klasifikasi')->with('monitor', $monitor)->with('kelas', $kelas);
     }
 
@@ -49,7 +52,7 @@ class KlasifikasiController extends Controller
 	{
 		return Excel::download(new RiwayatKlasifikasi, 'result.xlsx');
     }
-    
+
     public function hapusRiwayatKlasifikasi ($id)
     {
         $result = Result::find($id);
@@ -73,30 +76,37 @@ class KlasifikasiController extends Controller
      * fungsi ini adalah fungsi utama untuk proses klasifikasi,
      * membandingkan kelas 1 dan kelas 2 kemudian memilih hasil yang
      * memiliki nilai terbesar.
-     * 
-     * @param object $data
+     *
+     * @param Request $request
+     * @return array
      */
     private function klasifikasi (Request $request)
     {
+        $tmp = -1;
+        $analysis = [];
         $hasil = $this->simpanHasilObjek($request);
-        $kelas_1 = $this->proses($hasil, 1);
-        $kelas_2 = $this->proses($hasil, 2);
-        if ($kelas_1 > $kelas_2) {
-            $hasil['classes'] = 1;
-            return $hasil;
+        $classes = Training::select('classes', DB::raw('count(*) as total'))->groupBy('classes')->get();
+        foreach ($classes as $kelas) {
+            array_push($analysis, [
+                "class" => $kelas->classes,
+                "num" => $this->proses($hasil, $kelas->classes)
+            ]);
+            if ($tmp < $this->proses($hasil, $kelas->classes)) {
+                $tmp = $this->proses($hasil, $kelas->classes);
+                $hasil['classes'] = $kelas->classes;
+            }
         }
-        else if ($kelas_1 < $kelas_2) {
-            $hasil['classes'] = 2;
-            return $hasil;
-        }
+
+        $hasil['analysis'] = json_encode($analysis);
+        return $hasil;
     }
 
     /**
      * fungsi ini digunakan untuk mengkalikan semua hasil perhitungan.
-     * 
-     * @param object $data
+     *
+     * @param array $data
      * @param int $kelas
-     * 
+     *
      * @return float
      */
     private function proses ($data, $kelas)
@@ -108,7 +118,7 @@ class KlasifikasiController extends Controller
         array_push($tmp, $this->menghitungRataRataKelas($kelas));
         $hasil = 1;
         foreach ($tmp as $key => $value) {
-            $hasil *= $value; 
+            $hasil *= $value;
         }
 
         return $hasil;
@@ -117,11 +127,11 @@ class KlasifikasiController extends Controller
     /**
      * fungsi ini digunakan untuk menghitung jumlah atribut yang sama dengan
      * data training kemudian dibagi dengan jumlah kelas.
-     * 
+     *
      * @param string $atribut
-     * @param object $data
+     * @param array $data
      * @param int $kelas
-     * 
+     *
      * @return float
      */
     private function mengolahKasus ($atribut, $data, $kelas)
@@ -136,9 +146,9 @@ class KlasifikasiController extends Controller
     /**
      * fungsi ini digunakan untuk menghitung nilai rata-rata
      * dari kelas yang ada pada data training.
-     * 
+     *
      * @param int $kelas
-     * 
+     *
      * @return float
      */
     private function menghitungRataRataKelas ($kelas)
@@ -150,9 +160,9 @@ class KlasifikasiController extends Controller
     /**
      * fungsi ini digunakan untuk menghitung jumlah kelas pada
      * data training.
-     * 
+     *
      * @param int $kelas
-     * 
+     *
      * @return int
      */
     private function menghitungKelas ($kelas)
@@ -166,18 +176,20 @@ class KlasifikasiController extends Controller
      * fungsi ini digunakan untuk menyimpan nilai rata-rata
      * ke tabel Results dan menghapus semua data di tabel
      * Monitors.
-     * 
-     * @param object $data
-     * 
-     * @return object
+     *
+     * @param Request $request
+     * @return array
      */
     private function simpanHasilObjek (Request $request)
     {
         $hasil = [
             'name' => $request->name,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
             'pH' => $this->menghitungNilaiRataRataObjek('pH'),
             'turbidity' => $this->menghitungNilaiRataRataObjek('turbidity'),
-            'temperature' => $this->menghitungNilaiRataRataObjek('temperature')
+            'temperature' => $this->menghitungNilaiRataRataObjek('temperature'),
+            'histories' => json_encode(Monitor::all()->toArray())
         ];
 
         return $hasil;
@@ -186,9 +198,9 @@ class KlasifikasiController extends Controller
     /**
      * fungsi ini digunakan untuk menghitung rata-rata
      * dari atribut yang ada pada tabel Monitors.
-     * 
+     *
      * @param string $atribut
-     * 
+     *
      * @return int
      */
     private function menghitungNilaiRataRataObjek ($atribut)
