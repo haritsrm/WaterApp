@@ -48,6 +48,12 @@ $(function() {
             locationNameInput: $('#us2-address')
         }
     });
+    navigator.geolocation.getCurrentPosition(function(position) {
+        $('#us2').locationpicker('location', {
+            latitude: position.coords.latitude, 
+            longitude: position.coords.longitude,
+        });
+    });
 
 
     // Subscribing for events
