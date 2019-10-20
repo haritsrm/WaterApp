@@ -73,7 +73,6 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            {{! $counter = 1 }}
                                                             @foreach(json_decode($value->analysis) as $key => $analysis)
                                                             <tr>
                                                                 <td>{{ $analysis->class }}</td>
@@ -93,7 +92,6 @@
                                                     <table class="table datatable-basic">
                                                         <thead>
                                                             <tr>
-                                                                <th style="text-align:center">No</th>
                                                                 <th style="text-align:center">Waktu</th>
                                                                 <th style="text-align:center">pH</th>
                                                                 <th style="text-align:center">Kekeruhan</th>
@@ -101,10 +99,8 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            {{! $counter = 1 }}
                                                             @foreach(json_decode($value->histories) as $key => $history)
                                                             <tr>
-                                                                <td>{{ $counter++ }}</td>
                                                                 <td>{{ $history->created_at }}</td>
                                                                 <td>{{ $history->pH }}</td>
                                                                 <td>{{ $history->turbidity }}</td>
