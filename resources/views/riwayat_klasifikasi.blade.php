@@ -76,7 +76,7 @@
                                                             @foreach(json_decode($value->analysis) as $key => $analysis)
                                                             <tr>
                                                                 <td>{{ $analysis->class }}</td>
-                                                                <td>{{ $analysis->num }}</td>
+                                                                <td>{{ round($analysis->num, 5) }}</td>
                                                                 <td><span class="label label-success">{{ $analysis->class == $value->classes ? "Terpilih" : "" }}</span></td>
                                                             </tr>
                                                             @endforeach
