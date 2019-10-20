@@ -99,7 +99,7 @@
                         <form action="/simpan" method="post" class="form-inline">
                             @csrf
                             <div class="modal-body">
-                                <div class="form-group has-feedback">
+                                <div class="form-group mb-5 has-feedback">
                                     <label>Nama Objek: </label>
                                     <input type="text" placeholder="nama objek" name="name" id="us2-address" class="form-control">
                                     <div class="form-control-feedback">
