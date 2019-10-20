@@ -40,7 +40,7 @@
                         <td>{{ $value->temperature }}</td>
                         <td><span class="label label-success">{{ $value->classes }}</span></td>
                         <td>
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#modal_form_inline_{{ $value->id }}">Details</button>
+                            <button class="btn btn-primary" onclick="initMap()" data-toggle="modal" data-target="#modal_form_inline_{{ $value->id }}">Details</button>
                             <!-- Inline form modal -->
                             <div id="modal_form_inline_{{ $value->id }}" class="modal fade">
                                 <div class="modal-dialog">
@@ -52,13 +52,9 @@
                                             <div id="detail-map"></div>
                                             <script>
                                                 function initMap() {
-                                                    var pin = {
-                                                        lat: {{ number_format($value->latitude, 3) }}, 
-                                                        lng: {{ number_format($value->longitude, 3) }}
-                                                    };
-                                                    var map = new google.maps.Map(
-                                                        document.getElementById('detail-map'), {zoom: 15, center: pin});
-                                                    var marker = new google.maps.Marker({position: pin, map: map});
+                                                    var pin = "{{ number_format($value->latitude, 3) }},{{ number_format($value->longitude, 3) }}";
+                                                    var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+pin+"&zoom=14&size=400x300&sensor=false&key={{ env('MAPS_API_KEY') }}";
+                                                    document.getElementById("detail-map").innerHTML = "<img src='"+img_url+"'>";
                                                 }
                                             </script>
                                             <p><strong>Maps link: </strong><a href="https://www.google.com/maps/search/?api=1&query={{ $value->latitude }},{{ $value->longitude }}">https://www.google.com/maps/search/?api=1&query={{ $value->latitude }},{{ $value->longitude }}</a></p>
