@@ -30,3 +30,4 @@ Route::post('/simpan', 'KlasifikasiController@simpanSungai')->name('simpanSungai
 Route::delete('/hapusRiwayat/{id}', 'KlasifikasiController@hapusRiwayatKlasifikasi')->name('hapusRiwayat');
 Route::post('/importTraining', 'KlasifikasiController@importTraining')->name('importTraining');
 Route::delete('/hapusTraining/{id}', 'KlasifikasiController@hapusDataTraining')->name('hapusTraining');
+Route::delete('/hapusSemuaTraining', 'KlasifikasiController@hapusSemuaDataTraining')->name('hapusSemuaTraining');

@@ -32,6 +32,13 @@ class KlasifikasiController extends Controller
         return redirect()->back();
     }
 
+    public function hapusSemuaDataTraining ()
+    {
+        $training = Training::truncate();
+
+        return redirect()->back();
+    }
+
     public function tabelKlasifikasi (Request $request)
     {
         $data = $this->klasifikasi($request);

@@ -15,10 +15,16 @@
     <strong>{{ $sukses }}</strong>
 </div>
 @endif
-
-<button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="#importExcel">
-    Import Data Training
-</button>
+<div class="row mb-5 ml-5">
+    <button type="button" class="btn btn-primary mr-5 col-md-2" data-toggle="modal" data-target="#importExcel">
+        Import Data Training
+    </button>
+    <form method="POST" action="{{ route('hapusSemuaTraining') }}">
+        {{ csrf_field() }}
+        {{ method_field('DELETE') }}
+        <button class="btn btn-info col-md-2" type="submit">Hapus Semua</button>
+    </form>
+</div>
 
 <!-- Import Excel -->
 <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
