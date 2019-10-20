@@ -36,29 +36,18 @@ $(function() {
         }
     });
 
-    $( document ).ready(function() {
-        navigator.geolocation.getCurrentPosition(showPosition);
-        function showPosition(position) {
-            var lat = position.coords.latitude;
-            var lng = position.coords.longitude;
-            buildMap(lat, lng);
-        }
-      });
-
     // Binding UI with the widget
-    function buildMap(lat, lng) {
-        $('#us2').locationpicker({
-            location: {latitude: +lat || -6.914744, longitude: +lng || 107.609810}, 
-            radius: 1,
-            scrollwheel: false,
-            inputBinding: {
-                latitudeInput: $('#us2-lat'),
-                longitudeInput: $('#us2-lon'),
-                radiusInput: $('#us2-radius'),
-                locationNameInput: $('#us2-address')
-            }
-        });
-    }
+    $('#us2').locationpicker({
+        location: {latitude: -6.914744, longitude: 107.609810}, 
+        radius: 1,
+        scrollwheel: false,
+        inputBinding: {
+            latitudeInput: $('#us2-lat'),
+            longitudeInput: $('#us2-lon'),
+            radiusInput: $('#us2-radius'),
+            locationNameInput: $('#us2-address')
+        }
+    });
 
 
     // Subscribing for events
