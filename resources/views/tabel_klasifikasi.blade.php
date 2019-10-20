@@ -96,7 +96,7 @@
                             <h5 class="modal-title">Masukkan nama objek</h5>
                         </div>
 
-                        <form action="{{ route('simpanSungai') }}" method="post" class="form-inline">
+                        <form action="/simpan" method="post" class="form-inline">
                             @csrf
                             <div class="modal-body">
                                 <div class="form-group has-feedback">
