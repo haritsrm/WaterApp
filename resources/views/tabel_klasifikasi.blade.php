@@ -83,7 +83,8 @@
                 <p align="center"><strong>Keterangan:</strong>
                     {{{ $kelas ? "" : "Data monitor masih kosong" }}}
                     {{{ $kelas == 1 ? "Air kelas 1 merupakan air yang dapat dimanfaatkan untuk kebutuhan rumah tangga." : ""}}}
-                    {{{ $kelas == 2 ? "Air kelas 2 merupakan air yang dapat dimanfaatkan untuk pertanian, peternakan, dan kebutuhan industri." : ""}}}</p>
+                    {{{ $kelas == 2 ? "Air kelas 2 merupakan air yang dapat dimanfaatkan untuk pertanian, peternakan, dan kebutuhan industri." : ""}}}
+                    {{{ $kelas == 3 ? "Air kelas 3 merupakan air yang dapat dimanfaatkan untuk pertanian, peternakan, dan kebutuhan industri." : ""}}}</p>
             </div>
             @if($kelas)
             <button class="btn btn-primary" style="margin: 0% 46%" data-toggle="modal" data-target="#modal_form_inline">Simpan data</button>
