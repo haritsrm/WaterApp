@@ -17,6 +17,8 @@
             <p>Air kelas 1 merupakan air yang dapat dimanfaatkan untuk kebutuhan rumah tangga.</p>
 
             <p>Air kelas 2 merupakan air yang dapat dimanfaatkan untuk pertanian, peternakan, dan kebutuhan industri.</p>
+            
+            <p>Air kelas 3 merupakan air yang dapat dimanfaatkan untuk pertanian, peternakan, dan kebutuhan industri.</p>
         </div>
     </div>
 @endsection
