@@ -17,8 +17,8 @@ class TrainingImport implements ToModel
         return new Training([
             'name' => $row[0],
             'pH' => round($row[1], 1), 
-            'temperature' => round($row[2], 1), 
-            'turbidity' => round($row[3], 1), 
+            'turbidity' => round($row[2], 1), 
+            'temperature' => round($row[3], 1), 
             'classes' => round($row[4], 1)
         ]);
     }
